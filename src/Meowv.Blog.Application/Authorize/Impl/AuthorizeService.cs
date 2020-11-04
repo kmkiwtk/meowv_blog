@@ -109,6 +109,7 @@ namespace Meowv.Blog.Application.Authorize.Impl
                 var url = $"{GitHubConfig.API_User}?access_token={access_token}";
                 using var client = _httpClient.CreateClient();
                 client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.14 Safari/537.36 Edg/83.0.478.13");
+                client.DefaultRequestHeaders.Add("Authorization", "token " + access_token);
                 var httpResponse = await client.GetAsync(url);
                 if (httpResponse.StatusCode != HttpStatusCode.OK)
                 {
@@ -132,8 +133,8 @@ namespace Meowv.Blog.Application.Authorize.Impl
                 }
 
                 var claims = new[] {
-                    new Claim(ClaimTypes.Name, user.Name),
-                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Name, user.Name??""),
+                    new Claim(ClaimTypes.Email, user.Email??""),
                     new Claim(JwtRegisteredClaimNames.Exp, $"{new DateTimeOffset(DateTime.Now.AddMinutes(AppSettings.JWT.Expires)).ToUnixTimeSeconds()}"),
                     new Claim(JwtRegisteredClaimNames.Nbf, $"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}")
                 };
