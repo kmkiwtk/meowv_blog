@@ -193,6 +193,21 @@
             RedisConnectionString
             </summary>
         </member>
+        <member name="T:Meowv.Blog.Domain.Configurations.AppSettings.Hangfire">
+            <summary>
+            Hangfire配置信息
+            </summary>
+        </member>
+        <member name="P:Meowv.Blog.Domain.Configurations.AppSettings.Hangfire.User">
+            <summary>
+            Hangfire用户
+            </summary>
+        </member>
+        <member name="P:Meowv.Blog.Domain.Configurations.AppSettings.Hangfire.Password">
+            <summary>
+            Hangfire用户密码
+            </summary>
+        </member>
         <member name="F:Meowv.Blog.Domain.Configurations.GitHubConfig.API_Authorize">
             <summary>
             GET请求，跳转GitHub登录界面，获取用户授权，得到code

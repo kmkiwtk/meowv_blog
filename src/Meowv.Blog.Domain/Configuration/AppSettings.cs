@@ -82,5 +82,22 @@ namespace Meowv.Blog.Domain.Configurations
             /// </summary>
             public static string RedisConnectionString => _config["Caching:RedisConnectionString"];
         }
+
+
+        /// <summary>
+        /// Hangfire配置信息
+        /// </summary>
+        public static class Hangfire
+        {
+            /// <summary>
+            /// Hangfire用户
+            /// </summary>
+            public static string User => _config["Hangfire:User"];
+
+            /// <summary>
+            /// Hangfire用户密码
+            /// </summary>
+            public static string Password => _config["Hangfire:Password"];
+        }
     }
 }
