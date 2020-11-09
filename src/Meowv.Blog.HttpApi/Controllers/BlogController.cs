@@ -110,5 +110,12 @@ namespace Meowv.Blog.HttpApi.Controllers
         {
             return await _blogService.QueryCategoriesAsync();
         }
+
+        [HttpGet]
+        [Route("tags")]
+        public async Task<ServiceResult<IEnumerable<QueryTagDto>>> QueryTagsAsync()
+        {
+            return await _blogService.QueryTagsAsync();
+        }
     }
 }

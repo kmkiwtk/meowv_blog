@@ -19,16 +19,6 @@
             展示名称
             </summary>
         </member>
-        <member name="T:Meowv.Blog.Application.Contracts.Blog.QueryCategoryDto">
-            <summary>
-            按种类搜索的列表
-            </summary>
-        </member>
-        <member name="P:Meowv.Blog.Application.Contracts.Blog.QueryCategoryDto.Count">
-            <summary>
-            文章数量
-            </summary>
-        </member>
         <member name="T:Meowv.Blog.Application.Contracts.Blog.PostBriefDto">
             <summary>
             查询到的文章简单信息
@@ -164,6 +154,16 @@
             链接
             </summary>
         </member>
+        <member name="T:Meowv.Blog.Application.Contracts.Blog.QueryCategoryDto">
+            <summary>
+            按种类搜索的列表
+            </summary>
+        </member>
+        <member name="P:Meowv.Blog.Application.Contracts.Blog.QueryCategoryDto.Count">
+            <summary>
+            文章数量
+            </summary>
+        </member>
         <member name="T:Meowv.Blog.Application.Contracts.Blog.QueryPostDto">
             <summary>
             传输查询数据的实体类
@@ -177,6 +177,16 @@
         <member name="P:Meowv.Blog.Application.Contracts.Blog.QueryPostDto.Posts">
             <summary>
             Posts
+            </summary>
+        </member>
+        <member name="T:Meowv.Blog.Application.Contracts.Blog.QueryTagDto">
+            <summary>
+            tag查询列表
+            </summary>
+        </member>
+        <member name="P:Meowv.Blog.Application.Contracts.Blog.QueryTagDto.Count">
+            <summary>
+            数量
             </summary>
         </member>
         <member name="T:Meowv.Blog.Application.Contracts.Blog.TagDto">
