@@ -2,6 +2,9 @@
 //TagDto.cs
 namespace Meowv.Blog.Application.Contracts.Blog
 {
+    /// <summary>
+    /// 标签列表的实体类
+    /// </summary>
     public class TagDto
     {
         /// <summary>

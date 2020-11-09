@@ -6,6 +6,8 @@ using Meowv.Blog.Application.Contracts.Blog;
 using Meowv.Blog.ToolKits.Base;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
@@ -96,6 +98,17 @@ namespace Meowv.Blog.HttpApi.Controllers
         public async Task<ServiceResult<PostDetailDto>> GetPostDetailAsync(string url)
         {
             return await _blogService.GetPostDetailAsync(url);
+        }
+
+        /// <summary>
+        ///查询分类列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("categories")]
+        public async Task<ServiceResult<IEnumerable<QueryCategoryDto>>> QueryCategoriesAsync()
+        {
+            return await _blogService.QueryCategoriesAsync();
         }
     }
 }

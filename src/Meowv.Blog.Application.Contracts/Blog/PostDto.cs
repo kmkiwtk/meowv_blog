@@ -2,6 +2,9 @@
 
 namespace Meowv.Blog.Application.Contracts.Blog
 {
+    /// <summary>
+    /// post列表的实体类
+    /// </summary>
     public class PostDto
     {
         /// <summary>

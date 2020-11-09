@@ -2,6 +2,9 @@
 //CategoryDto.cs
 namespace Meowv.Blog.Application.Contracts.Blog
 {
+    /// <summary>
+    /// 种类列表实体类
+    /// </summary>
     public class CategoryDto
     {
         /// <summary>

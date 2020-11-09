@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace Meowv.Blog.Application.Contracts.Blog
 {
+    /// <summary>
+    /// 查询的文章中具体内容
+    /// </summary>
     public class PostDetailDto
     {
         /// <summary>
