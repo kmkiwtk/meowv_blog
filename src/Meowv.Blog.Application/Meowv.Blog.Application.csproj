@@ -3,7 +3,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>    <RootNamespace>Meowv.BLlog.Application</RootNamespace>
+    <TargetFramework>netcoreapp3.1</TargetFramework>    <RootNamespace>Meowv.Blog.Application</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

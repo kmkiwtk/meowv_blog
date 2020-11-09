@@ -54,6 +54,10 @@ namespace Meowv.Blog.BackgroundJobs
     },
                 DashboardTitle = "任务调度中心"
             });
+
+            //用service来处理定时任务的添加
+            var service = context.ServiceProvider;
+
         }
     }
 }

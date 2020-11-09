@@ -1,10 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
+//IBackgroundJob.cs
+using System.Threading.Tasks;
+using Volo.Abp.DependencyInjection;
 
-namespace Meowv.Blog.BackgroundJobs
+namespace Meowv.Blog.BackgroundJobs.Jobs
 {
-    class Class1
+    public interface IBackgroundJob : ITransientDependency
     {
+        /// <summary>
+        /// 执行任务
+        /// </summary>
+        /// <returns></returns>
+        Task ExecuteAsync();
     }
 }

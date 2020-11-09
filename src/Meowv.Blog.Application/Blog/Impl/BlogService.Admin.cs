@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Meowv.Blog.Application.Blog
+namespace Meowv.Blog.Application.Blog.Impl
 {
-    public partial interface IBlogService
+    public partial class BlogService
     {
     }
 }
