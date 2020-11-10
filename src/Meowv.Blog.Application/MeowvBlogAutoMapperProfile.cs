@@ -3,6 +3,9 @@
 using AutoMapper;
 using Meowv.Blog.Application.Contracts.Blog;
 using Meowv.Blog.Domain.Blog;
+using System.Collections;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Meowv.Blog.Application
 {
@@ -17,7 +20,7 @@ namespace Meowv.Blog.Application
 
             CreateMap<PostDto, Post>().ForMember(x => x.Id, opt => opt.Ignore());
 
-            
+            CreateMap<FriendLink, FriendLinkDto>();
         }
     }
 }
