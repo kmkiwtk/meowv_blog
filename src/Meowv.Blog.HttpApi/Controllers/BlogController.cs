@@ -132,5 +132,20 @@ namespace Meowv.Blog.HttpApi.Controllers
         {
             return await _blogService.QueryFriendLinksAsync();
         }
+
+
+        /// <summary>
+        /// 分页查询文章列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("admin/posts")]
+        [Authorize]
+        [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
+        public async Task<ServiceResult<PagedList<QueryPostForAdminDto>>> QueryPostsForAdminAsync([FromQuery]PagingInput input)
+        {
+            return await _blogService.QueryPostsForAdminAsync(input);
+        }
     }
 }

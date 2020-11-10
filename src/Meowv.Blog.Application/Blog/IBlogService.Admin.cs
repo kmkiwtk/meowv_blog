@@ -1,5 +1,6 @@
 ﻿
 //IBlogService.cs
+using Meowv.Blog.Application.Contracts;
 using Meowv.Blog.Application.Contracts.Blog;
 using Meowv.Blog.ToolKits.Base;
 using System.Threading.Tasks;
@@ -19,5 +20,7 @@ namespace Meowv.Blog.Application.Blog
 
         
         Task<ServiceResult<PostDto>> GetPostAsync(int id);
+
+        Task<ServiceResult<PagedList<QueryPostForAdminDto>>> QueryPostsForAdminAsync(PagingInput input);
     }
 }

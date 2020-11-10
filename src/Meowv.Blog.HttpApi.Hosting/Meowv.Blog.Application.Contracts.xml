@@ -54,6 +54,11 @@
             创建时间
             </summary>
         </member>
+        <member name="P:Meowv.Blog.Application.Contracts.Blog.PostBriefForAdminDto.Id">
+            <summary>
+            文章的ID
+            </summary>
+        </member>
         <member name="T:Meowv.Blog.Application.Contracts.Blog.PostDetailDto">
             <summary>
             查询的文章中具体内容
@@ -187,6 +192,16 @@
         <member name="P:Meowv.Blog.Application.Contracts.Blog.QueryPostDto.Posts">
             <summary>
             Posts
+            </summary>
+        </member>
+        <member name="T:Meowv.Blog.Application.Contracts.Blog.QueryPostForAdminDto">
+            <summary>
+            管理文章传输类
+            </summary>
+        </member>
+        <member name="F:Meowv.Blog.Application.Contracts.Blog.QueryPostForAdminDto.Posts">
+            <summary>
+            文章的简要信息
             </summary>
         </member>
         <member name="T:Meowv.Blog.Application.Contracts.Blog.QueryTagDto">

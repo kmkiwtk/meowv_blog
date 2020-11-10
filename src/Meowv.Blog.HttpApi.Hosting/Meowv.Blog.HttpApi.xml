@@ -85,5 +85,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Meowv.Blog.HttpApi.Controllers.BlogController.QueryPostsForAdminAsync(Meowv.Blog.Application.Contracts.PagingInput)">
+            <summary>
+            分页查询文章列表
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
