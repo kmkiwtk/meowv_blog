@@ -73,5 +73,17 @@
              </summary>
              <returns></returns>
         </member>
+        <member name="M:Meowv.Blog.HttpApi.Controllers.BlogController.QueryTagsAsync">
+            <summary>
+            查询标签列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Meowv.Blog.HttpApi.Controllers.BlogController.QueryFriendLinksAsync">
+            <summary>
+            查询友链列表
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

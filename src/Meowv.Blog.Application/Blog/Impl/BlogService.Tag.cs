@@ -9,6 +9,10 @@ namespace Meowv.Blog.Application.Blog.Impl
 {
     public partial class BlogService
     {
+        /// <summary>
+        /// 查询标签列表
+        /// </summary>
+        /// <returns></returns>
         public async Task<ServiceResult<IEnumerable<QueryTagDto>>> QueryTagsAsync()
         {
             return await _blogCacheService.QueryTagsAsync(async ()=> {

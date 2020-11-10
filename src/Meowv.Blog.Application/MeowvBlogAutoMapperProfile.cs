@@ -16,6 +16,8 @@ namespace Meowv.Blog.Application
             CreateMap<Post, PostDto>();
 
             CreateMap<PostDto, Post>().ForMember(x => x.Id, opt => opt.Ignore());
+
+            
         }
     }
 }

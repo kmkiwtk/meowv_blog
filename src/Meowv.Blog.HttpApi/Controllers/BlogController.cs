@@ -111,11 +111,26 @@ namespace Meowv.Blog.HttpApi.Controllers
             return await _blogService.QueryCategoriesAsync();
         }
 
+        /// <summary>
+        /// 查询标签列表
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("tags")]
         public async Task<ServiceResult<IEnumerable<QueryTagDto>>> QueryTagsAsync()
         {
             return await _blogService.QueryTagsAsync();
+        }
+
+        /// <summary>
+        /// 查询友链列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("friendlinks")]
+        public async Task<ServiceResult<IEnumerable<FriendLinkDto>>> QueryFriendLinksAsync()
+        {
+            return await _blogService.QueryFriendLinksAsync();
         }
     }
 }
