@@ -28,5 +28,8 @@ namespace Meowv.Blog.Application.Blog
         Task<ServiceResult> UpdatePostAsync(int id, EditPostInput input);
 
         Task<ServiceResult> DeletePostAsync(int id);
+
+        Task<ServiceResult<PostForAdminDto>> GetPostForAdminAsync(int id);
+
     }
 }

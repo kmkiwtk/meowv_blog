@@ -155,9 +155,32 @@ namespace Meowv.Blog.Application.Blog.Impl
 
             await _postRepository.DeleteAsync(id);
             await _postTagRepository.DeleteAsync(x => x.PostId == id);
+            await _blogCacheService.RemoveAsync(CachePrefix.Blog_Post);
 
             result.IsSuccess(ResponseText.DELETE_SUCCESS);
             return result;
+        }
+
+        /// <summary>
+        /// 获取编辑文章详细内容
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult<PostForAdminDto>> GetPostForAdminAsync(int id)
+        {
+            var result = new ServiceResult<PostForAdminDto>();
+            var post = await _postRepository.GetAsync(id);
+            var tags = from post_tag in _postTagRepository
+                       join tag in _tagRepository
+                       on post_tag.TagId equals tag.Id
+                       where post_tag.Id.Equals(id)
+                       select tag.TagName;
+            var detail = ObjectMapper.Map<Post, PostForAdminDto>(post);
+            detail.Tags = tags;
+            detail.Url = detail.Url.Split("/").Where(x => !string.IsNullOrEmpty(x)).Last();
+            result.IsSuccess(detail);
+            return result;
+
         }
     }
 }

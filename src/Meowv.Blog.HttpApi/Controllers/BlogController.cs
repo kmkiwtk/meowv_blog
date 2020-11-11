@@ -178,12 +178,30 @@ namespace Meowv.Blog.HttpApi.Controllers
             return await _blogService.UpdatePostAsync(id, input);
         }
 
+        /// <summary>
+        /// 删除文章
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("post")]
         [ApiExplorerSettings(GroupName =Grouping.GroupName_v2)]
         public async Task<ServiceResult> DeletePostAsync ([Required] int id)
         {
             return await _blogService.DeletePostAsync(id);
+        }
+
+        /// <summary>
+        /// 获取编辑文章内容
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("admin/post")]
+        [ApiExplorerSettings(GroupName =Grouping.GroupName_v2)]
+        public async Task<ServiceResult<PostForAdminDto>> GetPostForAdminAsync(int id)
+        {
+            return await _blogService.GetPostForAdminAsync(id);
         }
     }
 }

@@ -107,5 +107,19 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:Meowv.Blog.HttpApi.Controllers.BlogController.DeletePostAsync(System.Int32)">
+            <summary>
+            删除文章
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Meowv.Blog.HttpApi.Controllers.BlogController.GetPostForAdminAsync(System.Int32)">
+            <summary>
+            编辑文章内容
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

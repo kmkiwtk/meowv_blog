@@ -4,11 +4,8 @@ using System.Text;
 
 namespace Meowv.Blog.Application.Contracts.Blog
 {
-    public class EditPostInput : PostDto
+    public class EditPostInput : PostForAdminDto
     {
-        /// <summary>
-        /// 标签列表
-        /// </summary>
-        public IEnumerable<string> Tags { get; set; }
+        
     }
 }

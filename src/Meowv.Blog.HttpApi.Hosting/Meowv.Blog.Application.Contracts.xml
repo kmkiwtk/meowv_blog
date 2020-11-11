@@ -19,11 +19,6 @@
             展示名称
             </summary>
         </member>
-        <member name="P:Meowv.Blog.Application.Contracts.Blog.EditPostInput.Tags">
-            <summary>
-            标签列表
-            </summary>
-        </member>
         <member name="P:Meowv.Blog.Application.Contracts.Blog.FriendLinkDto.Title">
             <summary>
             标题
@@ -157,6 +152,11 @@
         <member name="P:Meowv.Blog.Application.Contracts.Blog.PostDto.CreationTime">
             <summary>
             创建时间
+            </summary>
+        </member>
+        <member name="P:Meowv.Blog.Application.Contracts.Blog.PostForAdminDto.Tags">
+            <summary>
+            标签
             </summary>
         </member>
         <member name="T:Meowv.Blog.Application.Contracts.Blog.PostForPagedDto">
