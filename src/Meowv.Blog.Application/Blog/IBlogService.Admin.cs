@@ -13,7 +13,7 @@ namespace Meowv.Blog.Application.Blog
         Task<ServiceResult<string>> InsertPostAsync(PostDto dto);
 
         
-        Task<ServiceResult> DeletePostAsync(int id);
+        Task<ServiceResult> TestDeletePostAsync(int id);
 
         
         Task<ServiceResult<string>> UpdatePostAsync(int id, PostDto dto);
@@ -26,5 +26,7 @@ namespace Meowv.Blog.Application.Blog
         Task<ServiceResult> InsertPostAsync(EditPostInput input);
 
         Task<ServiceResult> UpdatePostAsync(int id, EditPostInput input);
+
+        Task<ServiceResult> DeletePostAsync(int id);
     }
 }

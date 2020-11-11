@@ -31,7 +31,7 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:Meowv.Blog.HttpApi.Controllers.BlogController.DeletePostAsync(System.Int32)">
+        <member name="M:Meowv.Blog.HttpApi.Controllers.BlogController.TestDeletePostAsync(System.Int32)">
             <summary>
             删除博客
             </summary>

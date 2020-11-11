@@ -64,7 +64,7 @@ namespace Meowv.Blog.Application.Blog.Impl
             return result;
         }
 
-        public async Task<ServiceResult> DeletePostAsync(int id)
+        public async Task<ServiceResult> TestDeletePostAsync(int id)
         {
             var result = new ServiceResult();
 

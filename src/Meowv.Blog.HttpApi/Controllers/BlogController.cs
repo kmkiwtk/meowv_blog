@@ -46,9 +46,9 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <returns></returns>
         [HttpDelete]
         [Authorize]
-        public async Task<ServiceResult> DeletePostAsync([Required] int id)
+        public async Task<ServiceResult> TestDeletePostAsync([Required] int id)
         {
-            return await _blogService.DeletePostAsync(id);
+            return await _blogService.TestDeletePostAsync(id);
         }
 
         /// <summary>
@@ -176,6 +176,14 @@ namespace Meowv.Blog.HttpApi.Controllers
         public async Task<ServiceResult> UpdatePostAsync([Required] int id, [FromBody] EditPostInput input)
         {
             return await _blogService.UpdatePostAsync(id, input);
+        }
+
+        [HttpDelete]
+        [Route("post")]
+        [ApiExplorerSettings(GroupName =Grouping.GroupName_v2)]
+        public async Task<ServiceResult> DeletePostAsync ([Required] int id)
+        {
+            return await _blogService.DeletePostAsync(id);
         }
     }
 }

@@ -137,5 +137,27 @@ namespace Meowv.Blog.Application.Blog.Impl
             result.IsSuccess(ResponseText.UPDATE_SUCCESS);
             return result;
         }
+
+        /// <summary>
+        /// 删除文章
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult> DeletePostAsync(int id)
+        {
+            var result = new ServiceResult();
+            var post = await _postRepository.GetAsync(id);
+            if (post == null) 
+            {
+                result.IsFailed(ResponseText.WHAT_NOT_EXIST.FormatWith("id", id));
+                return result;
+            }
+
+            await _postRepository.DeleteAsync(id);
+            await _postTagRepository.DeleteAsync(x => x.PostId == id);
+
+            result.IsSuccess(ResponseText.DELETE_SUCCESS);
+            return result;
+        }
     }
 }
