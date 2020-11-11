@@ -22,5 +22,7 @@ namespace Meowv.Blog.Application.Blog
         Task<ServiceResult<PostDto>> GetPostAsync(int id);
 
         Task<ServiceResult<PagedList<QueryPostForAdminDto>>> QueryPostsForAdminAsync(PagingInput input);
+
+        Task<ServiceResult> InsertPostAsync(EditPostInput input);
     }
 }

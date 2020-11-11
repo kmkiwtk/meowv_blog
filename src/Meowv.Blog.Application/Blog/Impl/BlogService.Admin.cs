@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Meowv.Blog.Domain.Shared.MeowvBlogConsts;
 
 namespace Meowv.Blog.Application.Blog.Impl
 {
@@ -37,5 +38,34 @@ namespace Meowv.Blog.Application.Blog.Impl
             return result;
         }
         
+        public async Task<ServiceResult> InsertPostAsync(EditPostInput input)
+        {
+            var result = new ServiceResult();
+
+            var post = ObjectMapper.Map<EditPostInput, Post>(input);
+            post.Url = $"{post.CreationTime.ToString(" yyyy MM dd ").Replace(" ", "/")}{post.Url}";
+            await _postRepository.InsertAsync(post);
+
+            var tags = await _tagRepository.GetListAsync();
+
+            var newTags = input.Tags
+                       .Where(item => !tags.Any(x => x.TagName.Equals(item)))
+                       .Select(item => new Tag
+                       {
+                           TagName = item,
+                           DisplayName = item
+                       });
+            await _tagRepository.BulkInsertAsync(newTags);
+
+            var postTags = input.Tags.Select(item => new PostTag
+            {
+                PostId = post.Id,
+                TagId = _tagRepository.FirstOrDefault(x => x.TagName == item).Id
+            });
+            await _postTagRepository.BulkInsertAsync(postTags);
+
+            result.IsSuccess(ResponseText.INSERT_SUCCESS);
+            return result;
+        }
     }
 }

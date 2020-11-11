@@ -147,5 +147,14 @@ namespace Meowv.Blog.HttpApi.Controllers
         {
             return await _blogService.QueryPostsForAdminAsync(input);
         }
+
+        [HttpPut]
+        [Authorize]
+        [Route("post")]
+        [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
+        public async Task<ServiceResult> InsertPostAsync([FromBody]EditPostInput input)
+        {
+            return await _blogService.InsertPostAsync(input);
+        }
     }
 }
