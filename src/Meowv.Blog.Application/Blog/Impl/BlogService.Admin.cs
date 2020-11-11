@@ -14,6 +14,11 @@ namespace Meowv.Blog.Application.Blog.Impl
 {
     public partial class BlogService
     {
+        /// <summary>
+        /// 查询编辑文章列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<ServiceResult<PagedList<QueryPostForAdminDto>>> QueryPostsForAdminAsync(PagingInput input)
         {
             var result = new ServiceResult<PagedList<QueryPostForAdminDto>>();
@@ -38,6 +43,11 @@ namespace Meowv.Blog.Application.Blog.Impl
             return result;
         }
         
+        /// <summary>
+        /// 编辑提交新的文章
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public async Task<ServiceResult> InsertPostAsync(EditPostInput input)
         {
             var result = new ServiceResult();
@@ -65,6 +75,66 @@ namespace Meowv.Blog.Application.Blog.Impl
             await _postTagRepository.BulkInsertAsync(postTags);
 
             result.IsSuccess(ResponseText.INSERT_SUCCESS);
+            return result;
+        }
+
+        /// <summary>
+        /// 更新文章
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult> UpdatePostAsync(int id, EditPostInput input)
+        {
+            var result = new ServiceResult();
+
+            var post = await _postRepository.GetAsync(id);
+            post.Title = input.Title;
+            post.Author = input.Author;
+            post.Url = $"{input.CreationTime.ToString(" yyyy MM dd ").Replace(" ", "/")}{input.Url}/";
+            post.Html = input.Html;
+            post.Markdown = input.Markdown;
+            post.CreationTime = input.CreationTime;
+            post.CategoryId = input.CategoryId;
+
+            await _postRepository.UpdateAsync(post);
+
+            var tags = await _tagRepository.GetListAsync();
+
+            var oldPostTags = from post_tags in await _postTagRepository.GetListAsync()
+                              join tag in await _tagRepository.GetListAsync()
+                              on post_tags.TagId equals tag.Id
+                              where post_tags.PostId.Equals(post.Id)
+                              select new
+                              {
+                                  post_tags.Id,
+                                  tag.TagName
+                              };
+
+            var removedIds = oldPostTags.Where(item => !input.Tags.Any(x => x == item.TagName) &&
+                                                       tags.Any(t => t.TagName == item.TagName))
+                                        .Select(item => item.Id);
+            await _postTagRepository.DeleteAsync(x => removedIds.Contains(x.Id));
+
+            var newTags = input.Tags
+                               .Where(item => !tags.Any(x => x.TagName == item))
+                               .Select(item => new Tag
+                               {
+                                   TagName = item,
+                                   DisplayName = item
+                               });
+            await _tagRepository.BulkInsertAsync(newTags);
+
+            var postTags = input.Tags
+                                .Where(item => !oldPostTags.Any(x => x.TagName == item))
+                                .Select(item => new PostTag
+                                {
+                                    PostId = id,
+                                    TagId = _tagRepository.FirstOrDefault(x => x.TagName == item).Id
+                                });
+            await _postTagRepository.BulkInsertAsync(postTags);
+
+            result.IsSuccess(ResponseText.UPDATE_SUCCESS);
             return result;
         }
     }

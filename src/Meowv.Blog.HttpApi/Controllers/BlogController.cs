@@ -148,13 +148,34 @@ namespace Meowv.Blog.HttpApi.Controllers
             return await _blogService.QueryPostsForAdminAsync(input);
         }
 
-        [HttpPut]
+
+        /// <summary>
+        /// 编辑提交新的文章
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost]
         [Authorize]
         [Route("post")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> InsertPostAsync([FromBody]EditPostInput input)
         {
             return await _blogService.InsertPostAsync(input);
+        }
+
+
+        /// <summary>
+        /// 更新文章
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("post")]
+        [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
+        public async Task<ServiceResult> UpdatePostAsync([Required] int id, [FromBody] EditPostInput input)
+        {
+            return await _blogService.UpdatePostAsync(id, input);
         }
     }
 }
