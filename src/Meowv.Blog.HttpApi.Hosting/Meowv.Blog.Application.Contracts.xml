@@ -184,6 +184,16 @@
             文章数量
             </summary>
         </member>
+        <member name="P:Meowv.Blog.Application.Contracts.Blog.QueryCategoryForAdminDto.Id">
+            <summary>
+            CategoryId
+            </summary>
+        </member>
+        <member name="P:Meowv.Blog.Application.Contracts.Blog.QueryFriendLinkForAdminDto.Id">
+            <summary>
+            id
+            </summary>
+        </member>
         <member name="T:Meowv.Blog.Application.Contracts.Blog.QueryPostDto">
             <summary>
             传输查询数据的实体类

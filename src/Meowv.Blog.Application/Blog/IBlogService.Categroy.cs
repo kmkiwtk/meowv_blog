@@ -14,5 +14,14 @@ namespace Meowv.Blog.Application.Blog
         /// </summary>
         /// <returns></returns>
         Task<ServiceResult<IEnumerable<QueryCategoryDto>>> QueryCategoriesAsync();
+
+        Task<ServiceResult<IEnumerable<QueryCategoryForAdminDto>>> QueryCategoriesForAdminAsync();
+
+        Task<ServiceResult> InsertCategoryAsync(EditCategoryInput input);
+
+        Task<ServiceResult> UpdateCategoryAsync(int id, EditCategoryInput input);
+
+        Task<ServiceResult> DeleteCategoryAsync(int id);
+        
     }
 }

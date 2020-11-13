@@ -14,5 +14,13 @@ namespace Meowv.Blog.Application.Blog
         /// </summary>
         /// <returns></returns>
         Task<ServiceResult<IEnumerable<QueryTagDto>>> QueryTagsAsync();
+
+        Task<ServiceResult<IEnumerable<QueryTagForAdminDto>>> QueryTagsForAdminAsync();
+
+        Task<ServiceResult> InsertTagAsync(EditTagInput input);
+
+        Task<ServiceResult> UpdateTagAsync(int id, EditTagInput input);
+
+        Task<ServiceResult> DeleteTagAsync(int id);
     }
 }

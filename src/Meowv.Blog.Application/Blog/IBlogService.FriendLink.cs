@@ -14,5 +14,13 @@ namespace Meowv.Blog.Application.Blog
         /// </summary>
         /// <returns></returns>
         Task<ServiceResult<IEnumerable<FriendLinkDto>>> QueryFriendLinksAsync();
+
+        Task<ServiceResult<IEnumerable<QueryFriendLinkForAdminDto>>> QueryFriendLinksForAdminAsync();
+
+        Task<ServiceResult> InsertFriendLinkAsync(EditFriendLinkInput input);
+
+        Task<ServiceResult> UpdateFriendLinkAsync(int id, EditFriendLinkInput input);
+
+        Task<ServiceResult> DeleteFriendLinkAsync(int id);
     }
 }

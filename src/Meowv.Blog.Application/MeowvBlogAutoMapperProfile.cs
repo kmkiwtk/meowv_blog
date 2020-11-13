@@ -6,6 +6,7 @@ using Meowv.Blog.Domain.Blog;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography.Xml;
 
 namespace Meowv.Blog.Application
 {
@@ -25,6 +26,14 @@ namespace Meowv.Blog.Application
             CreateMap<EditPostInput, Post>().ForMember(x => x.Id, opt => opt.Ignore());
 
             CreateMap<Post, PostForAdminDto>().ForMember(x => x.Tags, opt => opt.Ignore());
+
+            CreateMap<EditCategoryInput, Category>().ForMember(x => x.Id, opt => opt.Ignore());
+
+            CreateMap<EditTagInput, Tag>().ForMember(x => x.Id, opt => opt.Ignore());
+
+            CreateMap<FriendLink, QueryFriendLinkForAdminDto>();
+
+            CreateMap<EditFriendLinkInput, FriendLink>().ForMember(x => x.Id, opt => opt.Ignore());
         }
     }
 }
