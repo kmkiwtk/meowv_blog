@@ -2,12 +2,19 @@
 using Meowv.Blog.Application.Contracts.Blog;
 using Meowv.Blog.ToolKits.Base;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Meowv.Blog.Application.Caching.Blog
 {
     public partial interface IBlogCacheService
     {
+        /// <summary>
+        /// 通过分类查询文章
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync(string name,Func<Task<ServiceResult<IEnumerable<QueryPostDto>>>> factory);
         /// <summary>
         /// 分页查询文章列表
         /// </summary>

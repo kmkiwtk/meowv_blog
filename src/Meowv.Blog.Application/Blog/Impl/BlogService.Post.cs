@@ -13,6 +13,35 @@ namespace Meowv.Blog.Application.Blog.Impl
 {
     public partial class BlogService
     {
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync(string name)
+        {
+            return await _blogCacheService.QueryPostsByCategoryAsync(name, async () =>
+            {
+                var result = new ServiceResult<IEnumerable<QueryPostDto>>();
+
+                var list = (from posts in await _postRepository.GetListAsync()
+                            join categories in await _categoryRepository.GetListAsync()
+                            on posts.CategoryId equals categories.Id
+                            where categories.DisplayName.Equals(name)
+                            orderby posts.CreationTime descending
+                            select new PostBriefDto
+                            {
+                                Title = posts.Title,
+                                Url = posts.Url,
+                                Year = posts.CreationTime.Year,
+                                CreationTime = posts.CreationTime.TryToDateTime()
+                            })
+                           .GroupBy(x => x.Year)
+                           .Select(x => new QueryPostDto
+                           {
+                               Year = x.Key,
+                               Posts = x.ToList()
+                           });
+
+                result.IsSuccess(list);
+                return result;
+            });
+        }
 
         //BlogService.Post.cs
         /// <summary>

@@ -76,6 +76,18 @@ namespace Meowv.Blog.HttpApi.Controllers
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("posts/category")]
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByAsync([Required]string name)
+        {
+            return await _blogService.QueryPostsByCategoryAsync(name);
+        }
+
+        /// <summary>
         /// 分页查询文章列表
         /// </summary>
         /// <param name="input"></param>
@@ -141,7 +153,6 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("admin/posts")]
-        [Authorize]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult<PagedList<QueryPostForAdminDto>>> QueryPostsForAdminAsync([FromQuery]PagingInput input)
         {
@@ -155,7 +166,6 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
         [Route("post")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> InsertPostAsync([FromBody]EditPostInput input)
