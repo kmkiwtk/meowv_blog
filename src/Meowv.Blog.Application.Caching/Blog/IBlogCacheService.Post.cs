@@ -10,6 +10,13 @@ namespace Meowv.Blog.Application.Caching.Blog
     public partial interface IBlogCacheService
     {
         /// <summary>
+        /// 标签查询文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="factory"></param>
+        /// <returns></returns>
+        Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync(string name, Func<Task<ServiceResult<IEnumerable<QueryPostDto>>>> factory);
+        /// <summary>
         /// 通过分类查询文章
         /// </summary>
         /// <param name="name"></param>

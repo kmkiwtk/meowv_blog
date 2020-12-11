@@ -53,9 +53,9 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Meowv.Blog.HttpApi.Controllers.BlogController.QueryPostsByAsync(System.String)">
+        <member name="M:Meowv.Blog.HttpApi.Controllers.BlogController.QueryPostsByCategoryAsync(System.String)">
             <summary>
-            
+            分类查询文章列表
             </summary>
             <param name="name"></param>
             <returns></returns>

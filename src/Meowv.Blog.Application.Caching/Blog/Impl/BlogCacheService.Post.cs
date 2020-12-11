@@ -12,6 +12,20 @@ namespace Meowv.Blog.Application.Caching.Blog.Impl
 {
     public partial class BlogCacheService
     {
+
+        private const string KEY_QueryPostsByTag = "Blog:Post:QueryPostsByTag-{0}";
+
+        /// <summary>
+        /// 标签查询文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="factory"></param>
+        /// <returns></returns>
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync(string name, Func<Task<ServiceResult<IEnumerable<QueryPostDto>>>> factory)
+        {
+            return await Cache.GetOrAddAsync(KEY_QueryPostsByTag.FormatWith(name), factory, CacheStrategy.ONE_DAY);
+        }
+
         private const string KEY_QueryPostsByCategory = "Blog:Post:QueryPostsByCategory-{0}";
 
         /// <summary>

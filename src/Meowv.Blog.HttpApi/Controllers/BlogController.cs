@@ -23,6 +23,8 @@ namespace Meowv.Blog.HttpApi.Controllers
     {
         private readonly IBlogService _blogService;
 
+        #region 前台接口
+
         public BlogController(IBlogService blogService)
         {
             _blogService = blogService;
@@ -75,14 +77,21 @@ namespace Meowv.Blog.HttpApi.Controllers
             return await _blogService.GetPostAsync(id);
         }
 
+        [HttpGet]
+        [Route("posts/tag")]
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync([Required]string name)
+        {
+            return await _blogService.QueryPostsByTagAsync(name);
+        }
+
         /// <summary>
-        /// 
+        /// 分类查询文章列表
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
         [HttpGet]
         [Route("posts/category")]
-        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByAsync([Required]string name)
+        public async Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync([Required]string name)
         {
             return await _blogService.QueryPostsByCategoryAsync(name);
         }
@@ -145,13 +154,21 @@ namespace Meowv.Blog.HttpApi.Controllers
             return await _blogService.QueryFriendLinksAsync();
         }
 
+        #endregion
 
+
+
+        #region 后台接口
+
+
+        #region  文章
         /// <summary>
         /// 分页查询文章列表
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpGet]
+        [Authorize]
         [Route("admin/posts")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult<PagedList<QueryPostForAdminDto>>> QueryPostsForAdminAsync([FromQuery]PagingInput input)
@@ -166,6 +183,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize]
         [Route("post")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> InsertPostAsync([FromBody]EditPostInput input)
@@ -181,6 +199,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPut]
+        [Authorize]
         [Route("post")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> UpdatePostAsync([Required] int id, [FromBody] EditPostInput input)
@@ -194,6 +213,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
+        [Authorize]
         [Route("post")]
         [ApiExplorerSettings(GroupName =Grouping.GroupName_v2)]
         public async Task<ServiceResult> DeletePostAsync ([Required] int id)
@@ -207,6 +227,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
+        [Authorize]
         [Route("admin/post")]
         [ApiExplorerSettings(GroupName =Grouping.GroupName_v2)]
         public async Task<ServiceResult<PostForAdminDto>> GetPostForAdminAsync(int id)
@@ -214,13 +235,18 @@ namespace Meowv.Blog.HttpApi.Controllers
             return await _blogService.GetPostForAdminAsync(id);
         }
 
-        #region Category
+        #endregion
+
+
+        #region  分类
+
 
         /// <summary>
         /// 获取文章分类
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize]
         [Route("admin/categories")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult<IEnumerable<QueryCategoryForAdminDto>>> QueryCategoriesForAdminAsync ()
@@ -234,6 +260,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize]
         [Route("category")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> InsertCategoryAsync( [FromBody]EditCategoryInput input)
@@ -248,6 +275,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="input">新的分类</param>
         /// <returns></returns>
         [HttpPut]
+        [Authorize]
         [Route("category")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> UpdateCategoryAsync([Required]int id,[FromBody] EditCategoryInput input)
@@ -261,6 +289,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
+        [Authorize]
         [Route("category")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> DeleteCategoryAsync([Required]int id)
@@ -270,14 +299,15 @@ namespace Meowv.Blog.HttpApi.Controllers
 
         #endregion
 
-        #region Tag
 
+        #region  标签
 
         /// <summary>
         /// 查询文章标签列表
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize]
         [Route("admin/tags")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult<IEnumerable<QueryTagForAdminDto>>> QueryTagsForAdminAsync()
@@ -291,6 +321,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize]
         [Route("tag")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> InsertTagAsync([FromBody]EditTagInput input)
@@ -305,6 +336,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPut]
+        [Authorize]
         [Route("tag")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> UpdateTagAsync(int id,EditTagInput input)
@@ -318,6 +350,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
+        [Authorize]
         [Route("tag")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> DeleteTagAsync(int id)
@@ -327,13 +360,14 @@ namespace Meowv.Blog.HttpApi.Controllers
 
         #endregion
 
-        #region Friendlink
 
+        #region  友链
         /// <summary>
         /// 查询友链
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize]
         [Route("admin/friendlinks")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult<IEnumerable<QueryFriendLinkForAdminDto>>> QueryFriendLinksForAdminAsync()
@@ -347,6 +381,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize]
         [Route("friendlink")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> InsertFriendLinkAsync(EditFriendLinkInput input)
@@ -361,6 +396,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPut]
+        [Authorize]
         [Route("friendlink")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> UpdateFriendLinkAsync(int id,EditFriendLinkInput input)
@@ -374,6 +410,7 @@ namespace Meowv.Blog.HttpApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete]
+        [Authorize]
         [Route("friendlink")]
         [ApiExplorerSettings(GroupName = Grouping.GroupName_v2)]
         public async Task<ServiceResult> DeleteFriendLinkAsync(int id )
@@ -381,7 +418,9 @@ namespace Meowv.Blog.HttpApi.Controllers
             return await _blogService.DeleteFriendLinkAsync(id);
         }
 
+        #endregion
 
         #endregion
+
     }
 }

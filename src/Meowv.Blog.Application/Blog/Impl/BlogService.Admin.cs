@@ -170,10 +170,10 @@ namespace Meowv.Blog.Application.Blog.Impl
         {
             var result = new ServiceResult<PostForAdminDto>();
             var post = await _postRepository.GetAsync(id);
-            var tags = from post_tag in _postTagRepository
+            var tags = from post_tag in await _postTagRepository.GetListAsync()
                        join tag in _tagRepository
                        on post_tag.TagId equals tag.Id
-                       where post_tag.Id.Equals(id)
+                       where post_tag.PostId.Equals(post.Id)
                        select tag.TagName;
             var detail = ObjectMapper.Map<Post, PostForAdminDto>(post);
             detail.Tags = tags;

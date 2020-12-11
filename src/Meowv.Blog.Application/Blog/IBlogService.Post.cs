@@ -32,5 +32,12 @@ namespace Meowv.Blog.Application.Blog
         /// <param name="name"></param>
         /// <returns></returns>
         Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByCategoryAsync(string name);
+
+        /// <summary>
+        /// 标签查询文章列表
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Task<ServiceResult<IEnumerable<QueryPostDto>>> QueryPostsByTagAsync(string name);
     }
 }
