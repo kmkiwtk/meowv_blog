@@ -52,7 +52,7 @@ namespace Meowv.Blog.Application.Blog.Impl
                 TagName = x.TagName,
                 DisplayName = x.DisplayName,
                 Id = x.Id,
-                Count = post_tags.Count(p => p.Id == x.Id)
+                Count = post_tags.Count(p => p.TagId == x.Id)
             });
             result.IsSuccess(tags);
             return result;

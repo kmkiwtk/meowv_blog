@@ -15,6 +15,7 @@ namespace Meowv.Blog.HttpApi.Hosting
                       .ConfigureWebHostDefaults(builder =>
                       {
                           builder.UseIISIntegration()
+                                 .UseUrls("https://*:8081")
                                  .UseStartup<Startup>();
                       }).UseAutofac().Build().RunAsync();
         }

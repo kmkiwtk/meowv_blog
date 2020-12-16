@@ -127,7 +127,7 @@ namespace Meowv.Blog.HttpApi.Hosting
             app.UseRouting();
 
             //跨域
-            app.UseCors();
+            app.UseCors("blog");
 
             // 异常处理中间件
             app.UseMiddleware<ExceptionHandlerMiddleware>();
